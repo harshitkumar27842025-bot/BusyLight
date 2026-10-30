@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kuando / Plenom Busylight: Alpha, UC, Box, Omega, Alpha 2, Omega 2 -->
+    <usb-device vendor-id="10171" product-id="15306" />
+    <usb-device vendor-id="10171" product-id="15307" />
+    <usb-device vendor-id="10171" product-id="15308" />
+    <usb-device vendor-id="10171" product-id="15309" />
+    <usb-device vendor-id="10171" product-id="15310" />
+    <usb-device vendor-id="10171" product-id="15311" />
+    <!-- Luxafor Flag -->
+    <usb-device vendor-id="1240" product-id="62322" />
+    <!-- Blink(1) -->
+    <usb-device vendor-id="10168" product-id="493" />
+</resources>
