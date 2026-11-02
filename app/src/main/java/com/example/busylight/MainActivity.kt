@@ -61,8 +61,8 @@ class MainActivity : Activity() {
         appendLine("Light color: ${BusyState.color}")
         appendLine("Mode: ${BusyState.mode}")
         appendLine("Foreground app: ${BusyState.foregroundApp ?: "-"}")
-        appendLine("In a call (mic in use): ${BusyState.inCall}")
-        appendLine("Audio playing: ${BusyState.audioPlaying}")
+        appendLine("Microphone in use (any app): ${BusyState.inCall}")
+        appendLine("Audio playing (any app): ${BusyState.audioPlaying}")
         appendLine("USB debug: ${UsbLight.lastStatus}")
         append("API: http://${localIp()}:${Config.API_PORT}/status")
     }

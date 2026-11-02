@@ -61,13 +61,12 @@ class BusyLightService : Service() {
             val fg = if (BusyState.usageAccess) tracker.update() else null
             BusyState.foregroundApp = fg
 
+            // RED when ANY app is using the microphone or playing audio (or an Office app is on screen).
             val micInUse = audio.activeRecordingConfigurations.isNotEmpty()
-            val inCall = micInUse && fg != null && fg in Config.MEETING_PACKAGES
-            BusyState.inCall = inCall
+            BusyState.inCall = micInUse
             val playing = audio.isMusicActive
             BusyState.audioPlaying = playing
-            val playbackBusy = playing && fg != null && fg in Config.PLAYBACK_PACKAGES
-            val busy = (fg != null && fg in Config.OFFICE_PACKAGES) || inCall || playbackBusy
+            val busy = (fg != null && fg in Config.OFFICE_PACKAGES) || micInUse || playing
 
             val wanted = when (BusyState.mode) {
                 "red" -> "red"
