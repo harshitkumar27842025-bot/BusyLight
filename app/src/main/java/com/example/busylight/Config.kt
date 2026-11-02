@@ -15,6 +15,15 @@ object Config {
         "com.microsoft.office.officehubrow"      // Microsoft 365 app
     )
 
+    /** Light goes RED if one of these is in the foreground AND any audio is playing (songs, videos). */
+    val PLAYBACK_PACKAGES = setOf(
+        "com.android.chrome",
+        "com.google.android.youtube.tv",            // YouTube on Android TV
+        "com.google.android.youtube",               // YouTube (phones / some TVs)
+        "com.google.android.apps.youtube.music",    // YouTube Music
+        "com.google.android.youtube.tvmusic"        // YouTube Music on Android TV
+    )
+
     /** Light goes RED only if one of these is in the foreground AND the microphone is in use (a call). */
     val MEETING_PACKAGES = setOf(
         "com.microsoft.teams",
@@ -32,10 +41,11 @@ object BusyState {
     @Volatile var color = "none"         // what the light was last set to
     @Volatile var foregroundApp: String? = null
     @Volatile var inCall = false
+    @Volatile var audioPlaying = false
     @Volatile var usbPresent = false
     @Volatile var usageAccess = false
 
     fun json(): String =
         """{"color":"$color","mode":"$mode","foregroundApp":${foregroundApp?.let { "\"$it\"" } ?: "null"},""" +
-        """"inCall":$inCall,"usbLightConnected":$usbPresent,"usageAccessGranted":$usageAccess}"""
+        """"inCall":$inCall,"audioPlaying":$audioPlaying,"usbLightConnected":$usbPresent,"usageAccessGranted":$usageAccess}"""
 }

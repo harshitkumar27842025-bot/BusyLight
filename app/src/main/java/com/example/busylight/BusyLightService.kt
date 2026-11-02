@@ -64,7 +64,10 @@ class BusyLightService : Service() {
             val micInUse = audio.activeRecordingConfigurations.isNotEmpty()
             val inCall = micInUse && fg != null && fg in Config.MEETING_PACKAGES
             BusyState.inCall = inCall
-            val busy = (fg != null && fg in Config.OFFICE_PACKAGES) || inCall
+            val playing = audio.isMusicActive
+            BusyState.audioPlaying = playing
+            val playbackBusy = playing && fg != null && fg in Config.PLAYBACK_PACKAGES
+            val busy = (fg != null && fg in Config.OFFICE_PACKAGES) || inCall || playbackBusy
 
             val wanted = when (BusyState.mode) {
                 "red" -> "red"
